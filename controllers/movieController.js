@@ -2,8 +2,8 @@ const Movie = require('../models/movieModel');
 
 // Create a new movie
 exports.createMovie = (req, res) => {
-    const { name, rating, paragraph, date, time, image } = req.body;
-    const movie = new Movie({ name, rating, paragraph, date, time, image });
+    const { name,producer,director,stars,music_director, rating, paragraph, date,  hours, card_image,banner_image } = req.body;
+    const movie = new Movie({ name, producer,director,stars,music_director,rating, paragraph, date,  hours, card_image,banner_image });
 
     movie.save()
         .then(() => res.status(201).json({ message: 'Movie added successfully' }))
@@ -33,9 +33,9 @@ exports.getMovieById = (req, res) => {
 // Update a movie by ID
 exports.updateMovie = (req, res) => {
     const { id } = req.params;
-    const { name, rating, paragraph, date, time, image } = req.body;
+    const { name,producer,director,stars,music_director, rating, paragraph, date,  hours, card_image,banner_image,  } = req.body;
 
-    Movie.findByIdAndUpdate(id, { name, rating, paragraph, date, time, image }, { new: true })
+    Movie.findByIdAndUpdate(id, { name,producer,director,stars,music_director, rating, paragraph, date,  hours, card_image,banner_image,  }, { new: true })
         .then((movie) => {
             if (!movie) {
                 return res.status(404).json({ message: 'Movie not found' });
